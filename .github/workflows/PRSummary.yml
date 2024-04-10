@@ -28,12 +28,12 @@ jobs:
       - run: |
           echo Source code check out co completed
           ls
-      - name: Create Comment
-        if: ${{ steps.get-changed-files.outputs.files }}
-        run: |
-          # Using GitHub API to create a comment on the PR
-          PR_NUMBER=${{ github.event.pull_request.number }}
-          COMMENT="checklist comment here"
-          GITHUB_TOKEN=${{ secrets. GITHUB_TOKEN }}
-          COMMENT_URL="https://api.github.com/repos/${{ github.repository }}/issues/${PR_NUMBER}/comments"
-          curl -s -H "Authorization: token ${GITHUB_TOKEN}" -X POST $COMMENT_URL -d "{\"body\":\"$COMMENT\"}"`
+      - uses: actions/github-script@v7
+        with:
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: '👋 Thanks for reporting!'
+            })
