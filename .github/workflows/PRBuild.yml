@@ -36,10 +36,5 @@ jobs:
         cd spring-demo
         echo Running gradle build
         ./gradlew build
-    - name: Run unit tests
-      run: |
-        echo Running units tests
-        ./gradlew test
-        ls
-        echo Build folder contents 
-        ls build 
+        echo Build completed, build folder contents 
+        ls build
