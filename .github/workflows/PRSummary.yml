@@ -29,12 +29,29 @@ jobs:
           echo Source code check out co completed
           ls
       
-      - uses: actions/github-script@v6
+      - name: Add comment with checks
+        uses: actions/github-script@v6
         with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            github.rest.issues.createComment({
+            const checks = [
+              "Verify code style formatting",
+              "Test functionality in different browsers",
+              "Ensure documentation is updated",
+              // Add more checks as needed
+            ];
+
+            const issueComment = `
+            Hello @${{ github.event.pull_request.user.login }}! Thank you for your pull request. Before we can merge it, please ensure the following checks are completed:
+            
+            ${checks.map(check => `- ${check}`).join('\n')}
+            
+            Let us know if you need any assistance with these checks.
+            `;
+
+            await github.issues.createComment({
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              body: '👋 Thanks for reporting!'
-            })
+              body: issueComment
+            });
