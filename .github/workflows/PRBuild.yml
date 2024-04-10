@@ -39,7 +39,7 @@ jobs:
     - name: Run unit tests
       run: |
         echo Running units tests
-        ./gradle test
+        ./gradlew test
         ls
-        cd build
-        ls
+        echo Build folder contents 
+        ls build 
