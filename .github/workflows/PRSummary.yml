@@ -28,28 +28,12 @@ jobs:
       - run: |
           echo Source code check out co completed
           ls
-      - name: Add comment with checks
-        uses: actions/github-script@v6
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          script: |
-            const checks = [
-              "Verify code style formatting",
-              "Test functionality in different browsers",
-              "Ensure documentation is updated"
-            ];
-
-            const issueComment = `
-            Hello @${{ github.event.pull_request.user.login }}! Thank you for your pull request. Before we can merge it, please ensure the following checks are completed:
-            
-            ${checks.map(check => `- ${check}`).join('\n')}
-            
-            Let us know if you need any assistance with these checks.
-            `;
-
-            github.issues.createComment({
-              issue_number: context.payload.pull_request.number,
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              body: issueComment
-            });
+      - name: Create Comment
+        if: ${{ steps.get-changed-files.outputs.files }}
+        run: |
+          # Using GitHub API to create a comment on the PR
+          PR_NUMBER=${{ github.event.pull_request.number }}
+          COMMENT="checklist comment here"
+          GITHUB_TOKEN=${{ secrets. GITHUB_TOKEN }}
+          COMMENT_URL="https://api.github.com/repos/${{ github.repository }}/issues/${PR_NUMBER}/comments"
+          curl -s -H "Authorization: token ${GITHUB_TOKEN}" -X POST $COMMENT_URL -d "{\"body\":\"$COMMENT\"}"`
