@@ -22,7 +22,7 @@ jobs:
           echo Checking out source repo
       - uses: actions/checkout@v3
       - run: |
-          echo Source code check out co completed
+          echo Source code check out completed
           ls
       - uses: actions/github-script@v7
         with:
