@@ -27,9 +27,23 @@ jobs:
       - uses: actions/github-script@v7
         with:
           script: |
+            const checks = [
+              "Verify code style formatting",
+              "Test functionality in different browsers",
+              "Ensure documentation is updated"
+            ];
+
+            const issueComment = `
+            Hello @${{ github.event.pull_request.user.login }}! Thank you for your pull request. Before we can merge it, please ensure the following checks are completed:
+            
+            ${checks.map(check => `- ${check}`).join('\n')}
+            
+            Let us know if you need any assistance with these checks.
+            `;
+
             github.rest.issues.createComment({
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              body: '👋 Thanks for reporting!'
+              body: issueComment
             })
