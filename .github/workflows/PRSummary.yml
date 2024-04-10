@@ -28,7 +28,6 @@ jobs:
       - run: |
           echo Source code check out co completed
           ls
-      
       - name: Add comment with checks
         uses: actions/github-script@v6
         with:
@@ -37,8 +36,7 @@ jobs:
             const checks = [
               "Verify code style formatting",
               "Test functionality in different browsers",
-              "Ensure documentation is updated",
-              // Add more checks as needed
+              "Ensure documentation is updated"
             ];
 
             const issueComment = `
@@ -49,8 +47,8 @@ jobs:
             Let us know if you need any assistance with these checks.
             `;
 
-            await github.issues.createComment({
-              issue_number: context.issue.number,
+            github.issues.createComment({
+              issue_number: context.payload.pull_request.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
               body: issueComment
