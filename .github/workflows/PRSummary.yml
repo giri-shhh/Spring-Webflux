@@ -29,18 +29,12 @@ jobs:
           echo Source code check out co completed
           ls
       
-      - name: Add PR checklist as comment
-        uses: actions/github-script@v6
+      - uses: actions/github-script@v6
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            github.issues.createComment({
+            github.rest.issues.createComment({
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              body: 'Thanks for opening a pull request! \n' +
-                    'Here are a couple of checks to make sure everything is ready for review:\n' +
-                    '- [ ] Make sure all code changes are properly documented.\n' +
-                    '- [ ] Run the unit tests and ensure they pass successfully.\n' +
-                    'Please let me know if you have any questions.'
+              body: '👋 Thanks for reporting!'
             })
