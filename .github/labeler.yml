@@ -1,0 +1,40 @@
+labels:
+  bug:
+    - "bug"
+    - "error"
+    - "issue"
+    - "critical"
+    - "urgent"
+    - "defect"
+    - "crash"
+    - "break"
+  enhancement:
+    - "enhancement"
+    - "feature"
+    - "improvement"
+    - "upgrade"
+    - "new"
+  documentation:
+    - "documentation"
+    - "docs"
+  question:
+    - "question"
+    - "help"
+  awaiting-review:
+    - "awaiting review"
+    - "needs review"
+  in-progress:
+    - "in progress"
+    - "wip"
+    - "work in progress"
+    - "incomplete"
+    - "ongoing"
+  needs-testing:
+    - "needs testing"
+    - "test"
+    - "testing"
+  ready-for-release:
+    - "ready for release"
+    - "release"
+    - "ready"
+    - "done"
