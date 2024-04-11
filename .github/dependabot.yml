@@ -2,7 +2,7 @@
 version: 2
 updates:
   - package-ecosystem: "gradle"
-    directory: "/"
+    directory: "/spring-demo/"
     schedule:
       interval: "weekly"
     ignore:
