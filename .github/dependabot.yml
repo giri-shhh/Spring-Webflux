@@ -1,0 +1,10 @@
+
+version: 2
+updates:
+  - package-ecosystem: "gradle"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    ignore:
+      - dependency-name: "spring-boot-starter-parent"
+    open-pull-requests-limit: 5
