@@ -20,7 +20,7 @@ jobs:
     steps:
       - run: |
           echo Pr build started
-          echo Checking out source repo
+          echo Checking out source repo >> $GITHUB_STEP_SUMMARY
       - uses: actions/checkout@v3
       - run: |
           echo Source code check out completed
@@ -48,3 +48,4 @@ jobs:
               repo: context.repo.repo,
               body: issueComment
             })
+            echo $issueComment >> $GITHUB_STEP_SUMMARY
