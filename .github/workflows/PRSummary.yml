@@ -20,11 +20,12 @@ jobs:
     steps:
       - run: |
           echo Pr build started
-          echo Checking out source repo >> $GITHUB_STEP_SUMMARY
+          echo PR build started. Cloning the repo. >> $GITHUB_STEP_SUMMARY
       - uses: actions/checkout@v3
       - run: |
           echo Source code check out completed
           ls
+          ./github/template.md >> $GITHUB_STEP_SUMMARY
       - uses: actions/github-script@v7
         with:
           script: |
