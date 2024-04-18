@@ -48,4 +48,4 @@ jobs:
               repo: context.repo.repo,
               body: issueComment
             })
-            echo $issueComment >> $GITHUB_STEP_SUMMARY
+            echo ${{ issueComment }} >> $GITHUB_STEP_SUMMARY
